@@ -17,14 +17,28 @@ def main():
         if choice == "G":
             score = get_score()
         elif choice == "P":
-            pass
+            print_result(score)
         elif choice == "S":
-            pass
+            print_stars(score)
         else:
             print("Invalid option")
         print(MENU)
         choice = input(">>> ").upper()
     print("farewell")
+
+def print_stars(score):
+    print("*" * score)
+
+def print_result(score):
+    if score < 0 or score > 100:
+        result = "Invalid score"
+    elif score >= 90:
+        result = "Excellent"
+    elif score >= 50:
+        result = "Passable"
+    else:
+        result = "Bad"
+    print(f"Your result is: {result}")
 
 def get_score():
     score = int(input("Enter your score: "))
