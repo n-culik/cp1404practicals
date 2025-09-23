@@ -1,6 +1,4 @@
 # Practical 01
 
-Test if it is the right account
-Test if it is the right username now
-test again
-test agai
+Now there is the right account.\
+This was all testing since I had an old setup. 
