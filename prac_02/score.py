@@ -5,6 +5,7 @@ Program to determine score status
 import random
 
 def main():
+    """Get score from user and test function with random numbers"""
     score = float(input("Enter score: "))
     result = validate_score(score)
     print(f"your score is {result}")
@@ -15,6 +16,7 @@ def main():
 
 
 def validate_score(score: float):
+    """Validate score"""
     if score < 0 or score > 100:
         result = "Invalid score"
     elif score >= 90:

@@ -10,6 +10,7 @@ MENU ="""(G)et a valid score (must be 0-100 inclusive)
 (Q)uit"""
 
 def main():
+    """Menu for user to make a choice"""
     score = get_score()
     print(MENU)
     choice = input(">>> ").upper()
@@ -27,9 +28,11 @@ def main():
     print("farewell")
 
 def print_stars(score):
+    """Print the stars"""
     print("*" * score)
 
 def print_result(score):
+    """Validate the score and print the result"""
     if score < 0 or score > 100:
         result = "Invalid score"
     elif score >= 90:
@@ -41,6 +44,7 @@ def print_result(score):
     print(f"Your result is: {result}")
 
 def get_score():
+    """Get the score from user input and validates it"""
     score = int(input("Enter your score: "))
     while score < 0 or score > 100:
         print("Invalid score. Please enter between 0-100 inclusive")
