@@ -6,7 +6,7 @@ import random
 
 def main():
     """Get score from user and test function with random numbers"""
-    score = float(input("Enter score: "))
+    score = int(input("Enter score: "))
     result = validate_score(score)
     print(f"your score is {result}")
 
@@ -15,7 +15,7 @@ def main():
     print(f"Your score is {result}")
 
 
-def validate_score(score: float):
+def validate_score(score: int):
     """Validate score"""
     if score < 0 or score > 100:
         result = "Invalid score"
