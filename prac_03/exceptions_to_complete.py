@@ -1,6 +1,14 @@
 """
-Module : CP1404
-Date: XX.09.2025
-Author: Nicola Culik
-Description:
+CP1404/CP5632 - Practical
+Fill in the TODOs to complete the task
+Date: 30.09.2025
 """
+
+is_finished = False
+while not is_finished:
+    try:
+        result = int(input("Enter a valid integer: "))
+        # TODO: this line
+    except:  # TODO - add the exception you want to catch after except
+        print("Please enter a valid integer.")
+print("Valid result is:", result)
