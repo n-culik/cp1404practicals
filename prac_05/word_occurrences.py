@@ -4,7 +4,7 @@ Word occurrences count
 Date: 15.10.2025
 Author: Nicola Culik
 Estimate: 40 min
-Actual:
+Actual: 28 min
 """
 word_to_count = {}
 
