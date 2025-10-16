@@ -4,7 +4,7 @@ Display wimbledon winners and countries
 Date: 16.10.2025
 Author: Nicola Culik
 Estimate: 60 min
-Actual:   min
+Actual:   66 min
 """
 import csv
 FILENAME = "wimbledon.csv"
