@@ -13,7 +13,7 @@ def main():
     wimbledon_winners = read_file(FILENAME)
     print("Wimbledon Champions:")
     print_winner_count(wimbledon_winners)
-    # print_wimbledon_winners(wimbledon_winners)
+    print_country_winner(wimbledon_winners)
 
 def read_file(filename):
     wimbledon_winners = []
@@ -35,9 +35,14 @@ def print_winner_count(wimbledon_winners):
     for winner, count in winner_to_count.items():
         print(winner, count)
 
-# def print_wimbledon_winners(wimbledon_winners):
-#     for winner in wimbledon_winners:
-
+def print_country_winner(wimbledon_winners):
+    countries = set()
+    for country in wimbledon_winners:
+        country = country[1]
+        countries.add(country)
+    print()
+    print(f"These {len(countries)} countries have won Wimbledon:")
+    print(", ".join(countries))
 
 
 main()
