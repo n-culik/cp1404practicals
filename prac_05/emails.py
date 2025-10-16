@@ -9,15 +9,13 @@ Actual:  min
 
 def main():
     email_to_name = {}
-    print(email_to_name)
     email = input("Email: ")
-    # whole_name = extract_name(email)
-    # email_to_name[email] = validate_name(whole_name)
     while email != '':
         whole_name = extract_name(email)
         email_to_name[email] = validate_name(whole_name)
         email = input("Email: ")
-    print(email_to_name)
+    print()
+    print_email_to_name(email_to_name)
 
 def extract_name(email):
     remove_mail = email.split("@")
@@ -32,5 +30,9 @@ def validate_name(whole_name):
     else:
         whole_name = input("Name: ").title()
         return whole_name
+
+def print_email_to_name(email_to_name):
+    for email, whole_name in email_to_name.items():
+        print(f"{whole_name} ({email})")
 
 main()
