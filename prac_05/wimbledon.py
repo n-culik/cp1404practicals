@@ -11,9 +11,8 @@ FILENAME = "wimbledon.csv"
 
 def main():
     wimbledon_winners = read_file(FILENAME)
-    print(wimbledon_winners)
-    winner_to_count = count_winner(wimbledon_winners)
-    print(winner_to_count)
+    print("Wimbledon Champions:")
+    print_winner_count(wimbledon_winners)
     # print_wimbledon_winners(wimbledon_winners)
 
 def read_file(filename):
@@ -25,7 +24,7 @@ def read_file(filename):
             wimbledon_winners.append(line)
     return wimbledon_winners
 
-def count_winner(wimbledon_winners):
+def print_winner_count(wimbledon_winners):
     winner_to_count = {}
     for winner in wimbledon_winners:
         winner = winner[2]
@@ -33,7 +32,8 @@ def count_winner(wimbledon_winners):
             winner_to_count[winner] += 1
         except KeyError:
             winner_to_count[winner] = 1
-    return winner_to_count
+    for winner, count in winner_to_count.items():
+        print(winner, count)
 
 # def print_wimbledon_winners(wimbledon_winners):
 #     for winner in wimbledon_winners:
