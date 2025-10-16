@@ -4,7 +4,7 @@ Email name extraction
 Date: 15.10.2025
 Author: Nicola Culik
 Estimate: 50 min
-Actual:  min
+Actual:  66 min
 """
 
 def main():
