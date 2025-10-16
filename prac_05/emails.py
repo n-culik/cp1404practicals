@@ -11,16 +11,26 @@ def main():
     email_to_name = {}
     print(email_to_name)
     email = input("Email: ")
-    email_to_name[email] = extract_name(email)
+    # whole_name = extract_name(email)
+    # email_to_name[email] = validate_name(whole_name)
     while email != '':
+        whole_name = extract_name(email)
+        email_to_name[email] = validate_name(whole_name)
         email = input("Email: ")
-        email_to_name[email] = extract_name(email)
     print(email_to_name)
 
 def extract_name(email):
     remove_mail = email.split("@")
     names = remove_mail[0].split(".")
-    whole_name = " ".join(names).title()
+    whole_name = " ".join(names).title().strip()
     return whole_name
+
+def validate_name(whole_name):
+    choice = input(f"Is your name {whole_name}? (Y/n)").upper()
+    if choice == "Y" or choice == "":
+        return whole_name
+    else:
+        whole_name = input("Name: ").title()
+        return whole_name
 
 main()
