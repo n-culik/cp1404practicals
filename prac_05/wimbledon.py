@@ -6,6 +6,7 @@ Author: Nicola Culik
 Estimate: 60 min
 Actual:   min
 """
+import csv
 FILENAME = "wimbledon.csv"
 
 def main():
@@ -18,8 +19,10 @@ def main():
 def read_file(filename):
     wimbledon_winners = []
     with open(filename, "r", encoding="utf-8-sig") as in_file:
-        for line in in_file:
-            wimbledon_winners.append(line.split(","))
+        reader = csv.reader(in_file)
+        next(reader)
+        for line in reader:
+            wimbledon_winners.append(line)
     return wimbledon_winners
 
 def count_winner(wimbledon_winners):
