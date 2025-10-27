@@ -19,8 +19,10 @@ def main():
     # Q2
     limo.add_fuel(20)
     # Q3
-    print(f"Limo: {limo.fuel}")
+    print(f"Limo fuel: {limo.fuel}")
     # Q4
     limo.drive(115)
+    # Q5
+    print(limo)
 
 main()
