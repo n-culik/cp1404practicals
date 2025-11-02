@@ -10,25 +10,39 @@ from guitar import Guitar
 FILENAME = "guitars.csv"
 
 def main():
-    guitars = []
-
-    data = open_file()
-    for line in data:
-        parts = line.strip().split(',')
-        year = int(parts[1])
-        price = float(parts[2])
-        guitar = Guitar(parts[0], year, price)
-        guitars.append(guitar)
-
+    guitars = open_file()
+    print("Your current guitars are:")
     guitars.sort()
+    print_guitar(guitars)
+
+    print("Add a new guitar:")
+    name = input("Name of the guitar:")
+    while name !="":
+        year = int(input("Year of guitar:"))
+        price = float(input("Price of guitar:"))
+        guitars.append(Guitar(name, year, price))
+        name = input("Name of new guitar:")
+
+    print("Your new guitars are:")
+    guitars.sort()
+    print_guitar(guitars)
+
+
+def print_guitar(guitars):
     for guitar in guitars:
         print(guitar)
 
 
 def open_file():
+    guitars = []
     with open(FILENAME, "r") as in_file:
-        data = in_file.readlines()
-    return data
+        for line in in_file:
+            parts = line.strip().split(',')
+            year = int(parts[1])
+            price = float(parts[2])
+            guitar = Guitar(parts[0], year, price)
+            guitars.append(guitar)
+    return guitars
 
 
 main()
