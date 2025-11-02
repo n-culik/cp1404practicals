@@ -15,8 +15,14 @@ def main():
     data = open_file()
     for line in data:
         parts = line.strip().split(',')
-        guitar = Guitar(parts[0], parts[1], parts[2])
+        year = int(parts[1])
+        price = float(parts[2])
+        guitar = Guitar(parts[0], year, price)
         guitars.append(guitar)
+
+    guitars.sort()
+    for guitar in guitars:
+        print(guitar)
 
 
 def open_file():
