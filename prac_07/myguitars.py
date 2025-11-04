@@ -10,6 +10,7 @@ from guitar import Guitar
 FILENAME = "guitars.csv"
 
 def main():
+    """Main function to call other functions"""
     guitars = open_file()
     print("Your current guitars are:")
     guitars.sort()
@@ -32,10 +33,12 @@ def main():
     write_file(guitars)
 
 def print_guitar(guitars):
+    """Print the guitar list"""
     for guitar in guitars:
         print(guitar)
 
 def open_file():
+    """Open a file"""
     guitars = []
     with open(FILENAME, "r") as in_file:
         for line in in_file:
@@ -47,6 +50,7 @@ def open_file():
     return guitars
 
 def write_file(guitars):
+    """Write guitar list to file"""
     with open(FILENAME, "w") as out_file:
         for guitar in guitars:
             csv_data = f"{guitar.name},{guitar.year},{guitar.cost}\n"
