@@ -76,9 +76,13 @@ def display_projects(projects):
             incomplete_projects.append(project)
         else:
             completed_projects.append(project)
+
+    incomplete_projects.sort()
     print("Incomplete projects: ")
     for project in incomplete_projects:
         print(project)
+
+    completed_projects.sort()
     print("Completed projects: ")
     for project in completed_projects:
         print(project)

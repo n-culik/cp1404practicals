@@ -20,7 +20,12 @@ class Project:
     def __str__(self):
         return f"{self.name}, start: {self.start_date}, priority: {self.priority}, estimate: ${self.cost:.2f}, completion: {self.completion_percent}%"
 
+    def __lt__(self, other):
+        """Return True if priority is lower than other priority of a project"""
+        return self.priority < other.priority
+
     def is_complete(self):
+        """Return True if project is complete"""
         if self.completion_percent == 100:
             return True
         else:
