@@ -19,3 +19,9 @@ class Project:
 
     def __str__(self):
         return f"{self.name}, start: {self.start_date}, priority: {self.priority}, estimate: ${self.cost:.2f}, completion: {self.completion_percent}%"
+
+    def is_complete(self):
+        if self.completion_percent == 100:
+            return True
+        else:
+            return False

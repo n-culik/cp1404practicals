@@ -31,7 +31,7 @@ def main():
         elif choice == "S":
             break
         elif choice == "D":
-            break
+            display_projects(projects)
         elif choice == "F":
             break
         elif choice == "A":
@@ -65,6 +65,23 @@ def count_projects(projects):
     for project in projects:
         count += 1
     return count
+
+def display_projects(projects):
+    """Display projects list"""
+    completed_projects = []
+    incomplete_projects = []
+
+    for project in projects:
+        if not project.is_complete():
+            incomplete_projects.append(project)
+        else:
+            completed_projects.append(project)
+    print("Incomplete projects: ")
+    for project in incomplete_projects:
+        print(project)
+    print("Completed projects: ")
+    for project in completed_projects:
+        print(project)
 
 def write_file(filename, projects):
     """Write projects to a file"""
