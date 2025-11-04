@@ -14,3 +14,29 @@ MENU="""- (L)oad projects
 - (A)dd new project  
 - (U)pdate project
 - (Q)uit"""
+
+def main():
+    print(MENU)
+    choice = input(">>> ").upper()
+    while choice != "Q":
+        if choice == "L":
+            break
+        elif choice == "S":
+            break
+        elif choice == "D":
+            break
+        elif choice == "F":
+            break
+        elif choice == "A":
+            break
+        elif choice == "U":
+            break
+        else:
+            print("Invalid choice")
+        print(MENU)
+        choice = input(">>> ").upper()
+    print("Thank you for using custom-built project management software.")
+
+
+
+main()
