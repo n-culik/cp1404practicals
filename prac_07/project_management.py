@@ -19,6 +19,10 @@ MENU="""- (L)oad projects
 def main():
     filename = "projects.txt"
     projects = open_file(filename)
+    count_of_projects = count_projects(projects)
+
+    print("Welcome to Pythonic Project Management")
+    print(f"Loaded {count_of_projects} projects from {filename}")
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
@@ -38,6 +42,7 @@ def main():
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
+    write_file(filename, projects)
     print("Thank you for using custom-built project management software.")
 
 def open_file(filename):
@@ -53,5 +58,20 @@ def open_file(filename):
             project = Project(parts[0], parts[1], priority, cost, completion_percent)
             projects.append(project)
     return projects
+
+def count_projects(projects):
+    """Count the number of projects in projects list"""
+    count = 0
+    for project in projects:
+        count += 1
+    return count
+
+def write_file(filename, projects):
+    """Write projects to a file"""
+    with open(filename, "w") as out_file:
+        out_file.write("Name	Start Date	Priority	Cost Estimate	Completion Percentage\n")
+        for project in projects:
+            text_data = f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost}\t{project.completion_percent}\n"
+            out_file.write(f"{text_data}")
 
 main()
