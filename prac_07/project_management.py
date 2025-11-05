@@ -51,7 +51,7 @@ def main():
             update_project_number = validate_project_numer(projects)
             print(projects[update_project_number])
             new_percentage = validate_percentage_input(PROJECT_PERCENTAGE_MENU)
-            #new_priority = validate_priority_input(PROJECT_PRIORITY_MENU)
+            new_priority = validate_priority_input(PROJECT_PRIORITY_MENU)
             #projects = update_project(projects, update_project_number, new_percentage, new_priority)
         else:
             print("Invalid choice")
@@ -154,6 +154,31 @@ def validate_percentage_input(title):
                 is_valid = True
             except ValueError:
                 print("Invalid input - please enter a valid number")
+                user_input = int(input(f"{title}"))
+            except TypeError:
+                print("Number must be between 0 and 100")
+                user_input = int(input(f"{title}"))
+        return user_input
+
+def validate_priority_input(title):
+    """Validates the user input for priority"""
+    user_input = input(f"{title}")
+    if user_input == "":
+        return user_input
+    else:
+        is_valid = False
+        while not is_valid:
+            try:
+                int(user_input)
+                while user_input < 1:
+                    print("Number must be > 0")
+                    user_input = int(input(f"{title}"))
+                is_valid = True
+            except ValueError:
+                print("Invalid input - please enter a valid number")
+                user_input = int(input(f"{title}"))
+            except TypeError:
+                print("Number must be > 0")
                 user_input = int(input(f"{title}"))
         return user_input
 
