@@ -6,6 +6,7 @@ Author: Nicola Culik
 Estimate: 300 min
 Actual:   min
 """
+import datetime
 from project import Project
 
 MENU = """- (L)oad projects  
@@ -47,10 +48,14 @@ def main():
         elif choice == "A":
             print("Let's add a new project")
             name = input("Name: ")
-            start_date = input("Start date (dd/mm/yy): ")
+            start_date = validate_date()
             priority = validate_priority_input("Priority: ")
+            if priority == "":
+                priority = 0
             cost = validate_float_input("Cost estimate: $")
             percentage = validate_percentage_input("Percent complete: ")
+            if percentage == "":
+                percentage = 0
             projects.append(Project(name, start_date, priority, cost, percentage))
         elif choice == "U":
             display_projects(projects)
@@ -195,6 +200,18 @@ def validate_float_input(title):
         except ValueError:
             print("Invalid input - please enter a valid number")
     return user_input
+
+def validate_date():
+    is_valid = False
+    while not is_valid:
+        try:
+            date_string = input("Start date (dd/mm/yyyy): ")
+            date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+            date_string = date.strftime("%d/%m/%Y")
+            is_valid = True
+        except:
+            print("Please enter date in (dd/mm/yyyy)")
+    return date_string
 
 def update_project(projects, update_project_number, new_percentage, new_priority):
     project = projects[update_project_number]
