@@ -44,11 +44,14 @@ def main():
         elif choice == "D":
             display_sorted_projects(projects)
         elif choice == "F":
-            break
+            start_date = validate_date("Show projects that start after date (dd/mm/yy):")
+            for project in projects:
+                if project.start_date > start_date:
+                    print(project)
         elif choice == "A":
             print("Let's add a new project")
             name = input("Name: ")
-            start_date = validate_date()
+            start_date = validate_date("Start date (dd/mm/yy): ")
             priority = validate_priority_input("Priority: ")
             if priority == "":
                 priority = 0
@@ -78,10 +81,11 @@ def open_file(filename):
             in_file.readline()
             for line in in_file:
                 parts = line.strip().split('\t')
+                date = datetime.datetime.strptime(parts[1], "%d/%m/%Y").date()
                 priority = int(parts[2])
                 cost = float(parts[3])
                 completion_percent = int(parts[4])
-                project = Project(parts[0], parts[1], priority, cost, completion_percent)
+                project = Project(parts[0], date, priority, cost, completion_percent)
                 projects.append(project)
     except FileNotFoundError:
         print(f"File {filename} not found")
@@ -201,19 +205,20 @@ def validate_float_input(title):
             print("Invalid input - please enter a valid number")
     return user_input
 
-def validate_date():
+def validate_date(title):
+    """Validate user input date"""
     is_valid = False
     while not is_valid:
         try:
-            date_string = input("Start date (dd/mm/yyyy): ")
+            date_string = input(title)
             date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
-            date_string = date.strftime("%d/%m/%Y")
             is_valid = True
         except:
             print("Please enter date in (dd/mm/yyyy)")
-    return date_string
+    return date
 
 def update_project(projects, update_project_number, new_percentage, new_priority):
+    """Update project in projects list with given parameters"""
     project = projects[update_project_number]
     project.completion_percent = new_percentage
     project.priority = new_priority
