@@ -4,7 +4,7 @@ Project management code to handle projects
 Date: 04.11.2025
 Author: Nicola Culik
 Estimate: 300 min
-Actual:   min
+Actual:  343 min
 """
 import datetime
 from project import Project
