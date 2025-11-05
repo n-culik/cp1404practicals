@@ -65,12 +65,22 @@ def main():
             update_project_number = validate_project_numer(projects)
             print(projects[update_project_number])
             new_percentage = validate_percentage_input(PROJECT_PERCENTAGE_MENU)
+            if new_percentage == "":
+                new_percentage = projects[update_project_number].completion_percent
             new_priority = validate_priority_input(PROJECT_PRIORITY_MENU)
+            if new_priority == "":
+                new_priority = projects[update_project_number].priority
             projects = update_project(projects, update_project_number, new_percentage, new_priority)
         else:
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
+    user_input = input(f"Would you like to save to {filename}?").upper()
+    if user_input == "Y" or user_input == "YES" or user_input == "":
+        write_file(filename, projects)
+    else:
+        filename = input("Enter file name to save projects to: ")
+        write_file(filename, projects)
     print("Thank you for using custom-built project management software.")
 
 def open_file(filename):
@@ -135,7 +145,7 @@ def validate_project_numer(projects):
             projects[project_to_update]
             is_valid = True
         except IndexError:
-            print("Invalid book number")
+            print("Invalid project number")
             project_to_update = validate_project_number_input(PROJECT_NUMBER_MENU)
     return project_to_update
 
