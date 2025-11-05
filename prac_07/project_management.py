@@ -45,14 +45,20 @@ def main():
         elif choice == "F":
             break
         elif choice == "A":
-            break
+            print("Let's add a new project")
+            name = input("Name: ")
+            start_date = input("Start date (dd/mm/yy): ")
+            priority = validate_priority_input("Priority: ")
+            cost = validate_float_input("Cost estimate: $")
+            percentage = validate_percentage_input("Percent complete: ")
+            projects.append(Project(name, start_date, priority, cost, percentage))
         elif choice == "U":
             display_projects(projects)
             update_project_number = validate_project_numer(projects)
             print(projects[update_project_number])
             new_percentage = validate_percentage_input(PROJECT_PERCENTAGE_MENU)
             new_priority = validate_priority_input(PROJECT_PRIORITY_MENU)
-            #projects = update_project(projects, update_project_number, new_percentage, new_priority)
+            projects = update_project(projects, update_project_number, new_percentage, new_priority)
         else:
             print("Invalid choice")
         print(MENU)
@@ -147,17 +153,14 @@ def validate_percentage_input(title):
         is_valid = False
         while not is_valid:
             try:
-                int(user_input)
+                user_input = int(user_input)
                 while user_input < 0 or user_input > 100:
                     print("Number must be between 0 and 100")
                     user_input = int(input(f"{title}"))
                 is_valid = True
             except ValueError:
                 print("Invalid input - please enter a valid number")
-                user_input = int(input(f"{title}"))
-            except TypeError:
-                print("Number must be between 0 and 100")
-                user_input = int(input(f"{title}"))
+                user_input = input(f"{title}")
         return user_input
 
 def validate_priority_input(title):
@@ -169,18 +172,29 @@ def validate_priority_input(title):
         is_valid = False
         while not is_valid:
             try:
-                int(user_input)
+                user_input = int(user_input)
                 while user_input < 1:
                     print("Number must be > 0")
                     user_input = int(input(f"{title}"))
                 is_valid = True
             except ValueError:
                 print("Invalid input - please enter a valid number")
-                user_input = int(input(f"{title}"))
-            except TypeError:
-                print("Number must be > 0")
-                user_input = int(input(f"{title}"))
+                user_input = input(f"{title}")
         return user_input
+
+def validate_float_input(title):
+    """Validates the user input for cost"""
+    is_valid = False
+    while not is_valid:
+        try:
+            user_input = float(input(f"{title}"))
+            while user_input < 0:
+                print("Number must be >= 0")
+                user_input = float(input(f"{title}"))
+            is_valid = True
+        except ValueError:
+            print("Invalid input - please enter a valid number")
+    return user_input
 
 def update_project(projects, update_project_number, new_percentage, new_priority):
     project = projects[update_project_number]
