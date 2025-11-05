@@ -8,13 +8,16 @@ Actual:   min
 """
 from project import Project
 
-MENU="""- (L)oad projects  
+MENU = """- (L)oad projects  
 - (S)ave projects  
 - (D)isplay projects  
 - (F)ilter projects by date
 - (A)dd new project  
 - (U)pdate project
 - (Q)uit"""
+PROJECT_NUMBER_MENU = "Project choice: "
+PROJECT_PERCENTAGE_MENU = "New Percentage: "
+PROJECT_PRIORITY_MENU = "New Priority: "
 
 def main():
     """Main function for menu and call other functions"""
@@ -46,7 +49,10 @@ def main():
         elif choice == "U":
             display_projects(projects)
             update_project_number = validate_project_numer(projects)
-            projects = update_project(update_project_number, projects)
+            print(projects[update_project_number])
+            new_percentage = validate_number_input(PROJECT_PERCENTAGE_MENU)
+            new_priority = validate_number_input(PROJECT_PRIORITY_MENU)
+            projects = update_project(projects, update_project_number, new_percentage, new_priority)
         else:
             print("Invalid choice")
         print(MENU)
@@ -107,7 +113,7 @@ def display_sorted_projects(projects):
 
 def validate_project_numer(projects):
     """Validate project number"""
-    project_to_update = validate_number_input()
+    project_to_update = validate_number_input(PROJECT_NUMBER_MENU)
     is_valid = False
     while not is_valid:
         try:
@@ -115,23 +121,28 @@ def validate_project_numer(projects):
             is_valid = True
         except IndexError:
             print("Invalid book number")
-            project_to_update = validate_number_input()
+            project_to_update = validate_number_input(PROJECT_NUMBER_MENU)
     return project_to_update
 
-def validate_number_input():
+def validate_number_input(title):
     """Validates the user input for numbers"""
     is_valid = False
     while not is_valid:
         try:
-            user_input = int(input("Project choice: "))
+            user_input = int(input(f"{title}"))
             while user_input < 0:
                 print("Number must be >= 0")
-                user_input = int(input("Project choice: "))
+                user_input = int(input(f"{title}"))
             is_valid = True
         except ValueError:
             print("Invalid input - please enter a valid number")
     return user_input
 
+def update_project(projects, update_project_number, new_percentage, new_priority):
+    project = projects[update_project_number]
+    project.completion_percent = new_percentage
+    project.priority = new_priority
+    return projects
 
 def write_file(filename, projects):
     """Write projects to a file"""
