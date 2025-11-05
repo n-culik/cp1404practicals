@@ -17,6 +17,7 @@ MENU="""- (L)oad projects
 - (Q)uit"""
 
 def main():
+    """Main function for menu and call other functions"""
     filename = "projects.txt"
     projects = open_file(filename)
     count_of_projects = count_projects(projects)
@@ -27,9 +28,15 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            break
+            user_file = input("Enter file name to load projects from: ")
+            projects = open_file(user_file)
+            count_of_projects = count_projects(projects)
+            print(f"Loaded {count_of_projects} projects from {user_file}")
         elif choice == "S":
-            break
+            user_file = input("Enter file name to save projects to: ")
+            write_file(user_file, projects)
+            count_of_projects = count_projects(projects)
+            print(f"Saved {count_of_projects} projects to {user_file}")
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
@@ -42,21 +49,23 @@ def main():
             print("Invalid choice")
         print(MENU)
         choice = input(">>> ").upper()
-    write_file(filename, projects)
     print("Thank you for using custom-built project management software.")
 
 def open_file(filename):
     """Open a file"""
     projects = []
-    with open(filename, "r") as in_file:
-        in_file.readline()
-        for line in in_file:
-            parts = line.strip().split('\t')
-            priority = int(parts[2])
-            cost = float(parts[3])
-            completion_percent = int(parts[4])
-            project = Project(parts[0], parts[1], priority, cost, completion_percent)
-            projects.append(project)
+    try:
+        with open(filename, "r") as in_file:
+            in_file.readline()
+            for line in in_file:
+                parts = line.strip().split('\t')
+                priority = int(parts[2])
+                cost = float(parts[3])
+                completion_percent = int(parts[4])
+                project = Project(parts[0], parts[1], priority, cost, completion_percent)
+                projects.append(project)
+    except FileNotFoundError:
+        print(f"File {filename} not found")
     return projects
 
 def count_projects(projects):
