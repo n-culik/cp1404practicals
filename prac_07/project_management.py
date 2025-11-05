@@ -38,13 +38,15 @@ def main():
             count_of_projects = count_projects(projects)
             print(f"Saved {count_of_projects} projects to {user_file}")
         elif choice == "D":
-            display_projects(projects)
+            display_sorted_projects(projects)
         elif choice == "F":
             break
         elif choice == "A":
             break
         elif choice == "U":
-            break
+            display_projects(projects)
+            update_project_number = validate_project_numer(projects)
+            projects = update_project(update_project_number, projects)
         else:
             print("Invalid choice")
         print(MENU)
@@ -77,6 +79,13 @@ def count_projects(projects):
 
 def display_projects(projects):
     """Display projects list"""
+    index = 0
+    for project in projects:
+        print(f"{index} {project}")
+        index += 1
+
+def display_sorted_projects(projects):
+    """Display sorted projects list"""
     completed_projects = []
     incomplete_projects = []
 
@@ -95,6 +104,34 @@ def display_projects(projects):
     print("Completed projects: ")
     for project in completed_projects:
         print(project)
+
+def validate_project_numer(projects):
+    """Validate project number"""
+    project_to_update = validate_number_input()
+    is_valid = False
+    while not is_valid:
+        try:
+            projects[project_to_update]
+            is_valid = True
+        except IndexError:
+            print("Invalid book number")
+            project_to_update = validate_number_input()
+    return project_to_update
+
+def validate_number_input():
+    """Validates the user input for numbers"""
+    is_valid = False
+    while not is_valid:
+        try:
+            user_input = int(input("Project choice: "))
+            while user_input < 0:
+                print("Number must be >= 0")
+                user_input = int(input("Project choice: "))
+            is_valid = True
+        except ValueError:
+            print("Invalid input - please enter a valid number")
+    return user_input
+
 
 def write_file(filename, projects):
     """Write projects to a file"""
