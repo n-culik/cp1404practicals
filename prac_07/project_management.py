@@ -50,9 +50,9 @@ def main():
             display_projects(projects)
             update_project_number = validate_project_numer(projects)
             print(projects[update_project_number])
-            new_percentage = validate_number_input(PROJECT_PERCENTAGE_MENU)
-            new_priority = validate_number_input(PROJECT_PRIORITY_MENU)
-            projects = update_project(projects, update_project_number, new_percentage, new_priority)
+            new_percentage = validate_percentage_input(PROJECT_PERCENTAGE_MENU)
+            #new_priority = validate_priority_input(PROJECT_PRIORITY_MENU)
+            #projects = update_project(projects, update_project_number, new_percentage, new_priority)
         else:
             print("Invalid choice")
         print(MENU)
@@ -113,7 +113,7 @@ def display_sorted_projects(projects):
 
 def validate_project_numer(projects):
     """Validate project number"""
-    project_to_update = validate_number_input(PROJECT_NUMBER_MENU)
+    project_to_update = validate_project_number_input(PROJECT_NUMBER_MENU)
     is_valid = False
     while not is_valid:
         try:
@@ -121,11 +121,11 @@ def validate_project_numer(projects):
             is_valid = True
         except IndexError:
             print("Invalid book number")
-            project_to_update = validate_number_input(PROJECT_NUMBER_MENU)
+            project_to_update = validate_project_number_input(PROJECT_NUMBER_MENU)
     return project_to_update
 
-def validate_number_input(title):
-    """Validates the user input for numbers"""
+def validate_project_number_input(title):
+    """Validates the user input for project number"""
     is_valid = False
     while not is_valid:
         try:
@@ -137,6 +137,25 @@ def validate_number_input(title):
         except ValueError:
             print("Invalid input - please enter a valid number")
     return user_input
+
+def validate_percentage_input(title):
+    """Validates the user input for percentage"""
+    user_input = input(f"{title}")
+    if user_input == "":
+        return user_input
+    else:
+        is_valid = False
+        while not is_valid:
+            try:
+                int(user_input)
+                while user_input < 0 or user_input > 100:
+                    print("Number must be between 0 and 100")
+                    user_input = int(input(f"{title}"))
+                is_valid = True
+            except ValueError:
+                print("Invalid input - please enter a valid number")
+                user_input = int(input(f"{title}"))
+        return user_input
 
 def update_project(projects, update_project_number, new_percentage, new_priority):
     project = projects[update_project_number]
