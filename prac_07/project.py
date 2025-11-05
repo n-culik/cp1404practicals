@@ -18,7 +18,8 @@ class Project:
         self.completion_percent = completion_percent
 
     def __str__(self):
-        return f"{self.name}, start: {self.start_date}, priority: {self.priority}, estimate: ${self.cost:.2f}, completion: {self.completion_percent}%"
+        formatted_date = self.start_date.strftime("%d/%m/%Y")
+        return f"{self.name}, start: {formatted_date}, priority: {self.priority}, estimate: ${self.cost:.2f}, completion: {self.completion_percent}%"
 
     def __lt__(self, other):
         """Return True if priority is lower than other priority of a project"""

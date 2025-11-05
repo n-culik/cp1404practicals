@@ -44,7 +44,7 @@ def main():
         elif choice == "D":
             display_sorted_projects(projects)
         elif choice == "F":
-            start_date = validate_date("Show projects that start after date (dd/mm/yy):")
+            start_date = validate_date("Show projects that start after date (dd/mm/yyyy):")
             for project in projects:
                 if project.start_date > start_date:
                     print(project)
@@ -229,7 +229,7 @@ def write_file(filename, projects):
     with open(filename, "w") as out_file:
         out_file.write("Name	Start Date	Priority	Cost Estimate	Completion Percentage\n")
         for project in projects:
-            text_data = f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost}\t{project.completion_percent}\n"
+            text_data = f"{project.name}\t{project.start_date.strftime("%d/%m/%Y")}\t{project.priority}\t{project.cost}\t{project.completion_percent}\n"
             out_file.write(f"{text_data}")
 
 main()
