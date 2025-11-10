@@ -4,7 +4,7 @@ Kivy GUI program to convert miles to km
 Nicola Culik
 Started 10/11/2025
 Estimate: 50 min
-Actual:  0 min
+Actual:  43 min
 """
 from kivy.app import App
 from kivy.lang import Builder
