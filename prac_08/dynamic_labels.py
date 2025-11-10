@@ -4,7 +4,7 @@ Kivy GUI program to use dynamic labels
 Nicola Culik
 Started 10/11/2025
 Estimate: 30 min
-Actual:  min
+Actual: 13 min
 """
 
 from kivy.app import App
@@ -22,7 +22,7 @@ class DynamicLabelsApp(App):
         return self.root
 
     def build_labels(self):
-        """"""
+        """Build dynamic labels"""
         names = ["Nicola", "Bob", "Terry", "Test"]
         for name in names:
             temp_label = Label(text=name)
