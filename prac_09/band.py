@@ -23,3 +23,11 @@ class Band:
     def add(self, musician):
         """Add an musician to musician's collection."""
         self.musicians.append(musician)
+
+    def play(self):
+        """Return a string showing the musician playing their first (or no) instrument."""
+        for musician in self.musicians:
+            if not musician.instruments:
+                return f"{musician.name} needs an instrument!"
+            else:
+                return f"{musician.name} is playing: {musician.instruments[0]}"
