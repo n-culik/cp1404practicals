@@ -30,6 +30,7 @@ def main():
                 display_bill(current_bill)
         else:
             print("Invalid option")
+            display_bill(current_bill)
         print(MENU)
         choice = input(">>>").upper()
     print(f"Total trip cost: ${current_bill:.2f}")
@@ -65,6 +66,7 @@ def display_bill(current_fare):
     print(f"Bill to date: ${current_fare:.2f}")
 
 def display_taxi_fare(current_taxi):
+    current_taxi.start_fare()
     drive_distance = validate_number_input("Drive how far?")
     current_taxi.drive(drive_distance)
     print(f"Your {current_taxi.name} trip cost you ${current_taxi.get_fare()}")
