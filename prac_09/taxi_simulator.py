@@ -10,6 +10,7 @@ MENU = """q)uit, c)hoose taxi, d)rive"""
 def main():
     current_taxi = None
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2), SilverServiceTaxi("Hummer", 200, 4)]
+    current_fare = 0.0
     print("Let's drive!")
     print(MENU)
     choice = input(">>>").upper()
@@ -17,12 +18,14 @@ def main():
         if choice == "C":
             print("Taxis available:")
             display_taxis(taxis)
-            choose_taxi(taxis)
+            current_taxi = choose_taxi(taxis)
         elif choice == "D":
             if current_taxi is None:
                 print("You need to choose a taxi before you can drive")
+                display_bill(current_fare)
             else:
-                pass
+
+
         else:
             print("Invalid option")
         print(MENU)
@@ -37,24 +40,26 @@ def display_taxis(taxis):
         i += 1
 
 def choose_taxi(taxis):
-    taxi_choice = validate_number_input()
+    taxi_choice = validate_number_input("Choose taxi:")
     try:
         taxis[taxi_choice]
         return taxis[taxi_choice]
     except IndexError:
         print("Invalid taxi choice")
 
-
-def validate_number_input():
+def validate_number_input(menu_title):
     """Validates the user input for numbers"""
     is_valid = False
     while not is_valid:
         try:
-            taxi_choice = int(input("Choose taxi:"))
+            taxi_choice = int(input(f"{menu_title} "))
             is_valid = True
         except ValueError:
             print("Please enter a valid number")
     return taxi_choice
+
+def display_bill(current_fare):
+    print(f"Bill to date: ${current_fare:.2f}")
 
 
 main()
