@@ -36,6 +36,25 @@ def display_taxis(taxis):
         print(f"{i} - {taxi}")
         i += 1
 
+def choose_taxi(taxis):
+    taxi_choice = validate_number_input()
+    try:
+        taxis[taxi_choice]
+        return taxis[taxi_choice]
+    except IndexError:
+        print("Invalid taxi choice")
+
+
+def validate_number_input():
+    """Validates the user input for numbers"""
+    is_valid = False
+    while not is_valid:
+        try:
+            taxi_choice = int(input("Choose taxi:"))
+            is_valid = True
+        except ValueError:
+            print("Please enter a valid number")
+    return taxi_choice
 
 
 main()
