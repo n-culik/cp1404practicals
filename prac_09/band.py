@@ -26,8 +26,10 @@ class Band:
 
     def play(self):
         """Return a string showing the musician playing their first (or no) instrument."""
+        messages = []
         for musician in self.musicians:
             if not musician.instruments:
-                return f"{musician.name} needs an instrument!"
+                messages.append(f"{musician.name} needs an instrument!")
             else:
-                return f"{musician.name} is playing: {musician.instruments[0]}"
+                messages.append(f"{musician.name} is playing: {musician.instruments[0]}")
+        return "\n".join(messages)
