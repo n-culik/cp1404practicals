@@ -16,3 +16,10 @@ class Band:
         """Return a string representation of a Band."""
         return f"{self.name} ({self.musicians})"
 
+    def __repr__(self):
+        """Return a string representation of a Band, showing the variables."""
+        return str(vars(self))
+
+    def add(self, musician):
+        """Add an musician to musician's collection."""
+        self.musicians.append(musician)
