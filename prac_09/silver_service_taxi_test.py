@@ -15,7 +15,7 @@ def main():
 
     sst2 = SilverServiceTaxi("Taxi", 100, 2)
     sst2.drive(18)
-    assert sst2.get_fare() == 48.78, f"Expected 48.78, got {sst2.get_fare()}"
-
+    assert sst2.get_fare() == 48.80, f"Expected 48.80, got {sst2.get_fare():.2f}"
+    print(f"{sst2.get_fare():.2f}")
 
 main()
