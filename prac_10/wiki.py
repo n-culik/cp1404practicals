@@ -3,8 +3,23 @@ import wikipedia
 def main():
     user_input = input("Enter page title: ")
     while user_input:
-        print(wikipedia.page(user_input, auto_suggest=False))
+        try:
+            page = wikipedia.page(user_input, auto_suggest=False)
+            print(page.title)
+            print(page.summary)
+            print(page.url)
+
+        except wikipedia.exceptions.DisambiguationError as e:
+            print("We need a more specific title. Try one of the following, or a new search:")
+            print(e.options)
+
+        except wikipedia.exceptions.PageError:
+            print(f'Page id "{user_input}" does not match any pages. Try another id!')
+
+        print()
         user_input = input("Enter page title: ")
+
+    print("Thank you.")
 
 
 main()
