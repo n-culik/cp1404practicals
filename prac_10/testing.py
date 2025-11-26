@@ -69,3 +69,16 @@ doctest.testmod()
 # and one more that you decide is a useful test.
 # Run your doctests and watch the tests fail.
 # Then write the body of the function so that the tests pass.
+def format_phrase_as_sentence(phrase):
+    """
+    Format the phrase as a sentence.
+
+    >>> format_phrase_as_sentence('hello')
+    'Hello.'
+    >>> format_phrase_as_sentence('It is an ex parrot.')
+    'It is an ex parrot.'
+    >>> format_phrase_as_sentence('wOw this is nice')
+    'Wow this is nice.'
+    """
+
+    pass
