@@ -80,5 +80,10 @@ def format_phrase_as_sentence(phrase):
     >>> format_phrase_as_sentence('wOw this is nice')
     'Wow this is nice.'
     """
+    phrase = phrase.lower()
+    phrase = phrase[0].upper() + phrase[1:]
 
-    pass
+    if not phrase.endswith('.'):
+        phrase += '.'
+
+    return phrase
